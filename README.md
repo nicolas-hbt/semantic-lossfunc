@@ -9,19 +9,29 @@ The generated files are: ``sem_hr.pkl`` and ``sem_tr.pkl`` for the semantically 
 
 ## Running a model in the command-line
 To run a model with vanilla loss functions (the full list of parameters is available in the Usage Section):
+
 Template: `python main_vanilla.py -dataset dataset -model model -batch_size batchsize -lr lr -reg reg -dim dim -lossfunc lossfunc`
+
 Example: `python main_vanilla.py -dataset FB15k187 -model TransE -batch_size 2048 -lr 0.001 -reg 0.001 -dim 200 -lossfunc pairwise` 
 
 To run a model with vanilla loss functions (the full list of parameters is available in the Usage Section):
+
 Template: `python main_sem.py -dataset dataset -model model -batch_size batchsize -lr lr -reg reg -dim dim -lossfunc lossfunc`
+
 Example: `python main_sem.py -dataset FB15k187 -model TransE -batch_size 2048 -lr 0.001 -reg 0.001 -dim 200 -lossfunc pairwise`
 
 Alternatively, one can choose run either the training or testing procedure with the `pipeline` argument:
+
 Template (training): `python main_vanilla.py -pipeline train -dataset dataset -model model -batch_size batchsize -lr lr -reg reg -dim dim -lossfunc lossfunc`
+
 Template (testing): `python main_vanilla.py -pipeline test -dataset dataset -model model -batch_size batchsize -lr lr -reg reg -dim dim -lossfunc lossfunc`
 
 It is also possible to run the ablation study with ``main_vanilla_bucket.py`` and ``main_sem_bucket.py``:
-Template: `python main_vanilla_bucket.py -epoch epoch -dataset dataset -model model -batch_size batchsize -lr lr -reg reg -dim dim -lossfunc lossfunc`
+
+`python main_vanilla_bucket.py -epoch epoch -dataset dataset -model model -batch_size batchsize -lr lr -reg reg -dim dim -lossfunc lossfunc`
+
+`python main_sem_bucket.py -epoch epoch -dataset dataset -model model -batch_size batchsize -lr lr -reg reg -dim dim -lossfunc lossfunc`
+
 where the `epoch` parameter specifies at which epoch to test your model. In our experiments, the `epoch` parameter is set at the best epoch (w.r.t. MRR) found on the validation set.
 
 Details about all the user-defined parameters are available in the Usage Section below.
