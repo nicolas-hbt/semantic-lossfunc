@@ -1,4 +1,4 @@
-# Enhancing Knowledge Graph Embeddings with Semantic-driven Loss Functions
+# Treat Different Negatives Differently: Enriching Loss Functions with Domain and Range Constraints for Link Prediction
 
 ## Datasets
 The ``datasets/`` folder contains the following datasets: ``FB15k187``, ``DBpedia77k``, and ``YAGO14k``. These are the filtered versions of  ``FB15k-237``, ``DBpedia93k``, and ``YAGO19k``, respectively.
