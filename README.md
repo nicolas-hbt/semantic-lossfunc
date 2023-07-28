@@ -1,7 +1,7 @@
 # Treat Different Negatives Differently: Enriching Loss Functions with Domain and Range Constraints for Link Prediction
 
 ## Datasets
-The ``datasets/`` folder contains the following datasets: ``FB15k187``, ``DBpedia77k``, and ``YAGO14k``. These are the filtered versions of  ``FB15k-237``, ``DBpedia93k``, and ``YAGO19k``, respectively.
+The ``datasets/`` folder contains the following datasets: ``FB15k187``, ``DBpedia77k``, and ``YAGO14k``. These are the filtered versions of  ``FB15k-237``, ``DBpedia93k``, and ``YAGO19k``, respectively [1].
 
 The code for generating semantically valid and semantically invalid negative triples is provided for each dataset: ``neg_freebase.py``, ``neg_dbpedia.py``, and ``neg_yago.py``.
 These ``.py`` files only need to be run once.
@@ -99,3 +99,6 @@ ConvE has additional parameters:
 `hidden_dropout2`: hidden dropout (second layer)
 
 `label_smoothing`: label smoothing
+
+## References
+[1] Hubert, N., Monnin, P., Brun, A., & Monticolo, D. (2023). [Sem@K: Is my knowledge graph embedding model semantic-aware?](https://arxiv.org/abs/2301.05601).
