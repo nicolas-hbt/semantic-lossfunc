@@ -101,4 +101,4 @@ ConvE has additional parameters:
 `label_smoothing`: label smoothing
 
 ## References
-[1] Hubert, N., Monnin, P., Brun, A., & Monticolo, D. (2023). [Sem@K: Is my knowledge graph embedding model semantic-aware?](https://arxiv.org/abs/2301.05601).
+[1] Hubert, N., Monnin, P., Brun, A., & Monticolo, D. (2023). [Sem@K: Is my knowledge graph embedding model semantic-aware?](https://arxiv.org/abs/2301.05601)
