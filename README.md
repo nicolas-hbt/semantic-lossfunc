@@ -100,5 +100,50 @@ ConvE has additional parameters:
 
 `label_smoothing`: label smoothing
 
+## Best hyperparameters found
+
+| Model      | Hyperparameters         | DBpedia77k | FB15k187 | Yago14k |
+|------------|-------------------------|------------|----------|---------|
+| TransE     | Batch Size              | 2048       | 2048     | 1024    |
+|            | Embedding Dimension     | 200        | 200      | 100     |
+|            | Learning Rate           | 0.001      | 0.001    | 0.001   |
+|            | Regularization Weight   | 0.001      | 0.001    | 0.001   |
+|            | Semantic Factor         | 0.5        | 0.25     | 0.25    |
+| TransH     | Batch Size              | 2048       | 2048     | 1024    |
+|            | Embedding Dimension     | 200        | 200      | 100     |
+|            | Learning Rate           | 0.001      | 0.001    | 0.001   |
+|            | Regularization Weight   | 0.00001    | 0.00001  | 0.00001 |
+|            | Semantic Factor         | 0.5        | 0.25     | 0.25    |
+| DistMult   | Batch Size              | 2048       | 2048     | 1024    |
+|            | Embedding Dimension     | 200        | 200      | 100     |
+|            | Learning Rate           | 0.1        | 10.0     | 0.0001  |
+|            | Regularization Weight   | 0.00001    | 0.00001  | 0.00001 |
+|            | Semantic Factor         | 0.5        | 0.25     | 0.25    |
+| ComplEx    | Batch Size              | 2048       | 2048     | 1024    |
+|            | Embedding Dimension     | 200        | 200      | 100     |
+|            | Learning Rate           | 0.001      | 0.001    | 0.01    |
+|            | Regularization Weight   | 0.1        | 0.1      | 0.1     |
+|            | Semantic Factor         | 0.15       | 0.15     | 0.015   |
+| SimplE     | Batch Size              | 2048       | 2048     | 1024    |
+|            | Embedding Dimension     | 200        | 200      | 100     |
+|            | Learning Rate           | 0.1        | 0.1      | 0.1     |
+|            | Regularization Weight   | 0.01       | 0.1      | 0.00001 |
+|            | Semantic Factor         | 0.15       | 0.15     | 0.15    |
+| ConvE      | Batch Size              | 512        | 128      | 512     |
+|            | Embedding Dimension     | 200        | 200      | 200     |
+|            | Learning Rate           | 0.001      | 0.001    | 0.001   |
+|            | Regularization Weight   | 0.0        | 0.0      | 0.0     |
+|            | Semantic Factor         | 0.0001     | 0.001    | 0.001   |
+| TuckER     | Batch Size              | 128        | 128      | 128     |
+|            | Embedding Dimension     | 200        | 200      | 100     |
+|            | Learning Rate           | 0.001      | 0.0005   | 0.001   |
+|            | Regularization Weight   | 0.0        | 0.0      | 0.0     |
+|            | Semantic Factor         | 0.00001    | 0.0001   | 0.0001  |
+| RGCN       | Embedding Dimension     | 500        | 500      | 500     |
+|            | Learning Rate           | 0.01       | 0.01     | 0.01    |
+|            | Regularization Weight   | 0.01       | 0.01     | 0.01    |
+|            | Semantic Factor         | 0.1        | 0.1      | 0.1     |
+
+
 ## References
 [1] Hubert, N., Monnin, P., Brun, A., & Monticolo, D. (2023). [Sem@K: Is my knowledge graph embedding model semantic-aware?](https://arxiv.org/abs/2301.05601)
