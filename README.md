@@ -100,6 +100,23 @@ ConvE has additional parameters:
 
 `label_smoothing`: label smoothing
 
+## Full hyperparameter space
+
+All models were tested with the following combinations of hyperparameters:
+
+| Hyperparameters                        | Range                                           |
+|---------------------------------------|-------------------------------------------------|
+| Batch Size                            | {128, 256, 512, 1024, 2048}                   |
+| Embedding Dimension                   | {50, 100, 150, 200}                           |
+| Regularizer Type                      | {None, L1, L2}                                |
+| Regularizer Weight ($\lambda$)        | {1e-2, 1e-3, 1e-4, 1e-5}                     |
+| Learning Rate ($lr$)                  | {1e-2, 5e-3, 1e-3, 5e-4, 1e-4}              |
+| Margin $\gamma~(\mathcal{L}_{PHL})$    | {1, 2, 3, 5, 10, 20}                          |
+| Semantic Factor $\epsilon~(\mathcal{L}^{S}_{PHL})$ | {0.01, 0.1, 0.25, 0.5, 0.75}         |
+| Semantic Factor $\epsilon~(\mathcal{L}^{S}_{PLL})$ | {0.05, 0.10, 0.15, 0.25}             |
+| Semantic Factor $\epsilon~(\mathcal{L}^{S}_{BCEL})$ | {1e-1, 1e-2, 1e-3, 1e-4, 1e-5}  |
+
+
 ## Best hyperparameters found
 
 | Model      | Hyperparameters         | DBpedia77k | FB15k187 | Yago14k |
