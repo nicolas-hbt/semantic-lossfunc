@@ -214,6 +214,8 @@ Cut-offs for FB15k187, DBpedia77k, and Yago14k. B1, B2, and B3 denote the bucket
 
 ### Rank-based and Semantic-based Results on DBpedia77k (Intermediate and Large Sets)
 
+
+Rank-based and semantic-based results on DBpedia77k for buckets of relations that feature an intermediate (B2) and large (B3) set of semantically valid heads or tails.
 | Model        | MRR   | H@10  | S@10  | MRR   | H@10  | S@10  |
 |--------------|-------|-------|-------|-------|-------|-------|
 |              | B2    | B2    | B2    | B3    | B3    | B3    |
@@ -245,6 +247,7 @@ Cut-offs for FB15k187, DBpedia77k, and Yago14k. B1, B2, and B3 denote the bucket
 
 ### Rank-based and Semantic-based Results on FB15k-187 (Intermediate and Large Sets)
 
+Rank-based and semantic-based results on FB15k187 for the buckets of relations that feature an intermediate (B2) and large (B3) set of semantically valid heads or tails.
 | Model        | MRR   | H@10  | S@10  | MRR   | H@10  | S@10  |
 |--------------|-------|-------|-------|-------|-------|-------|
 |              | B2    | B2    | B2    | B3    | B3    | B3    |
@@ -273,6 +276,7 @@ Cut-offs for FB15k187, DBpedia77k, and Yago14k. B1, B2, and B3 denote the bucket
 
 ### Rank-based and Semantic-based Results on Yago14k (Intermediate and Large Sets)
 
+Rank-based and semantic-based results on Yago14k for the buckets of relations that feature an intermediate (B2) and large (B3) set of semantically valid heads or tails.
 | Model        | MRR   | H@10  | S@10  | MRR   | H@10  | S@10  |
 |--------------|-------|-------|-------|-------|-------|-------|
 |              | B2    | B2    | B2    | B3    | B3    | B3    |
