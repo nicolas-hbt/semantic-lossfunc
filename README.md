@@ -117,7 +117,7 @@ All models were tested with the following combinations of hyperparameters:
 | Semantic Factor $\epsilon~(\mathcal{L}^{S}_{BCEL})$ | {1e-1, 1e-2, 1e-3, 1e-4, 1e-5}  |
 
 
-## Best hyperparameters found
+## Chosen hyperparamters (main experiment)
 
 | Model      | Hyperparameters         | DBpedia77k | FB15k187 | Yago14k |
 |------------|-------------------------|------------|----------|---------|
@@ -160,6 +160,147 @@ All models were tested with the following combinations of hyperparameters:
 |            | Learning Rate           | 0.01       | 0.01     | 0.01    |
 |            | Regularization Weight   | 0.01       | 0.01     | 0.01    |
 |            | Semantic Factor         | 0.1        | 0.1      | 0.1     |
+
+
+## Appendices
+
+This section aims at providing implementation details that could not be discussed in the paper's content due to page limitations.
+
+### Chosen hyperparameters for the KGEMs trained with the alternative semantic-driven loss function
+
+| Model   | Hyperparameters         | DBpedia77k | FB15k187 | Yago14k |
+|---------|-------------------------|------------|----------|---------|
+| ComplEx | Batch Size              | 2048       | 2048     | 1024    |
+|         | Embedding Dimension     | 200        | 200      | 100     |
+|         | Learning Rate           | 1e-4       | 1e-4     | 1e-3    |
+|         | Regularization Weight   | 1e-1       | 1e-1     | 1e-1    |
+|         | Semantic Factor         | -1e-1      | -1e-1    | 1e-2    |
+| SimplE  | Batch Size              | 2048       | 2048     | 1024    |
+|         | Embedding Dimension     | 200        | 200      | 100     |
+|         | Learning Rate           | 1e-3       | 1e-4     | 1e-3    |
+|         | Regularization Weight   | 1e-1       | 1e-1     | 1e-1    |
+|         | Semantic Factor         | -1e-1      | 1e-2     | 1e-2    |
+| ConvE   | Batch Size              | 512        | 128      | 512     |
+|         | Embedding Dimension     | 200        | 200      | 200     |
+|         | Learning Rate           | 1e-3       | 1e-3     | 1e-3    |
+|         | Regularization Weight   | 0          | 0        | 0       |
+|         | Semantic Factor         | 1e-6       | 1e-5     | 1e-4    |
+| TuckER  | Batch Size              | 128        | 128      | 128     |
+|         | Embedding Dimension     | 200        | 200      | 100     |
+|         | Learning Rate           | 1e-3       | 5e-4     | 1e-3    |
+|         | Regularization Weight   | 0          | 0        | 0       |
+|         | Semantic Factor         | 1e-6       | 1e-5     | 1e-5    |
+| RGCN    | Embedding Dimension     | 500        | 500      | 500     |
+|         | Learning Rate           | 1e-2       | 1e-2     | 1e-2    |
+|         | Regularization Weight   | 1e-2       | 1e-2     | 1e-2    |
+|         | Semantic Factor         | 1e-4       | 1e-5     | 1e-4    |
+
+
+### Cut-offs for FB15k187, DBpedia77k, and Yago14k
+
+Cut-offs for FB15k187, DBpedia77k, and Yago14k. B1, B2, and B3 denote the buckets of relations with narrow, intermediate, and large sets of semantically valid heads or tails, respectively. $|\mathcal{R}|$ denotes the number of unique relations in a given bucket and $|\text{Sem. Val}|$ indicates the interval of the number of semantically valid entities for the bucket relations. To illustrate, $|\text{Sem. Val}|$ = [11, 216] for the head side means that relations in the bucket have at least $11$ and at most $216$ semantically valid heads.
+
+| Bucket | Side | Sem. Val Range | Unique Relations | Sem. Val Range | Unique Relations | Sem. Val Range | Unique Relations |
+|--------|------|----------------|------------------|----------------|------------------|----------------|------------------|
+|        |      | FB15k187        |                  | DBpedia77k     |                  | Yago14k        |                  |
+|        |      | Sem. Val Range  | Unique Relations | Sem. Val Range | Unique Relations | Sem. Val Range | Unique Relations |
+|--------|------|----------------|------------------|----------------|------------------|----------------|------------------|
+| B1     | Head | [11, 216]      | 69               | [12, 930]      | 62               | [93, 811]      | 10               |
+|        | Tail | [12, 244]      | 80               | [19, 801]      | 44               | [35, 678]      | 13               |
+| B2     | Head | [278, 1391]    | 55               | [1295, 11586]  | 58               | [2102, 3624]   | 15               |
+|        | Tail | [278, 1391]    | 49               | [1419, 11586]  | 55               | [2102, 3624]   | 16               |
+| B3     | Head | [1473, 4500]   | 63               | [22252, 57242] | 25               | {5730}         | 12               |
+|        | Tail | [1473, 4500]   | 58               | {57242}        | 50               | {5730}         | 8                |
+
+### Rank-based and Semantic-based Results on DBpedia77k (Intermediate and Large Sets)
+
+| Model        | MRR   | H@10  | S@10  | MRR   | H@10  | S@10  |
+|--------------|-------|-------|-------|-------|-------|-------|
+|              | B2    | B2    | B2    | B3    | B3    | B3    |
+|              | MRR   | H@10  | S@10  | MRR   | H@10  | S@10  |
+|--------------|-------|-------|-------|-------|-------|-------|
+| TransE-V     | .450  | .607  | .838  | .317  | .429  | .995  |
+| TransE-S     | .404  | .556  | .987  | .300  | .407  | 1     |
+|--------------|-------|-------|-------|-------|-------|-------|
+| TransH-V     | .449  | .610  | .729  | .311  | .425  | .971  |
+| TransH-S     | .423  | .592  | .981  | .296  | .413  | 1     |
+|--------------|-------|-------|-------|-------|-------|-------|
+| DistMult-V   | .446  | .553  | .669  | .505  | .413  | .742  |
+| DistMult-S   | .450  | .566  | .790  | .506  | .422  | .920  |
+|--------------|-------|-------|-------|-------|-------|-------|
+| ComplEx-V    | .442  | .538  | .551  | .582  | .453  | .787  |
+| ComplEx-S    | .448  | .545  | .707  | .505  | .426  | .975  |
+|--------------|-------|-------|-------|-------|-------|-------|
+| SimplE-V     | .381  | .461  | .716  | .485  | .357  | .954  |
+| SimplE-S     | .350  | .404  | .649  | .386  | .276  | .960  |
+|--------------|-------|-------|-------|-------|-------|-------|
+| ConvE-V      | .388  | .535  | .890  | .489  | .371  | .960  |
+| ConvE-S      | .429  | .559  | .977  | .450  | .399  | .999  |
+|--------------|-------|-------|-------|-------|-------|-------|
+| TuckER-V     | .438  | .547  | .874  | .591  | .436  | .898  |
+| TuckER-S     | .444  | .568  | .923  | .564  | .444  | .983  |
+|--------------|-------|-------|-------|-------|-------|-------|
+| RGCN-V       | .282  | .413  | .670  | .367  | .322  | .971  |
+| RGCN-S       | .275  | .423  | .861  | .362  | .357  | .999  |
+
+### Rank-based and Semantic-based Results on FB15k-187 (Intermediate and Large Sets)
+
+| Model        | MRR   | H@10  | S@10  | MRR   | H@10  | S@10  |
+|--------------|-------|-------|-------|-------|-------|-------|
+|              | B2    | B2    | B2    | B3    | B3    | B3    |
+|              | MRR   | H@10  | S@10  | MRR   | H@10  | S@10  |
+|--------------|-------|-------|-------|-------|-------|-------|
+| TransE-V     | .330  | .526  | .934  | .141  | .255  | .953  |
+| TransE-S     | .385  | .588  | .972  | .169  | .290  | .993  |
+|--------------|-------|-------|-------|-------|-------|-------|
+| TransH-V     | .330  | .517  | .846  | .161  | .262  | .963  |
+| TransH-S     | .380  | .590  | .967  | .171  | .291  | .993  |
+|--------------|-------|-------|-------|-------|-------|-------|
+| DistMult-V   | .336  | .527  | .780  | .177  | .274  | .946  |
+| DistMult-S   | .388  | .579  | .962  | .187  | .309  | .995  |
+|--------------|-------|-------|-------|-------|-------|-------|
+| ComplEx-V    | .327  | .476  | .318  | .197  | .306  | .717  |
+| ComplEx-S    | .351  | .537  | .769  | .191  | .310  | .942  |
+|--------------|-------|-------|-------|-------|-------|-------|
+| SimplE-V     | .283  | .432  | .331  | .179  | .274  | .694  |
+| SimplE-S     | .283  | .448  | .671  | .159  | .243  | .923  |
+|--------------|-------|-------|-------|-------|-------|-------|
+| ConvE-V      | .347  | .529  | .974  | .172  | .277  | .977  |
+| ConvE-S      | .354  | .543  | .998  | .188  | .283  | .999  |
+|--------------|-------|-------|-------|-------|-------|-------|
+| TuckER-V     | .387  | .574  | .987  | .215  | .330  | .994  |
+| TuckER-S     | .396  | .585  | .991  | .222  | .337  | .997  |
+
+### Rank-based and Semantic-based Results on Yago14k (Intermediate and Large Sets)
+
+| Model        | MRR   | H@10  | S@10  | MRR   | H@10  | S@10  |
+|--------------|-------|-------|-------|-------|-------|-------|
+|              | B2    | B2    | B2    | B3    | B3    | B3    |
+|              | MRR   | H@10  | S@10  | MRR   | H@10  | S@10  |
+|--------------|-------|-------|-------|-------|-------|-------|
+| TransE-V     | .879  | .928  | .892  | .841  | .923  | .974  |
+| TransE-S     | .861  | .922  | .997  | .854  | .917  | 1     |
+|--------------|-------|-------|-------|-------|-------|-------|
+| TransH-V     | .854  | .922  | .567  | .788  | .92   | .803  |
+| TransH-S     | .865  | .921  | .876  | .778  | .926  | .996  |
+|--------------|-------|-------|-------|-------|-------|-------|
+| DistMult-V   | .852  | .915  | .443  | .941  | .911  | .536  |
+| DistMult-S   | .862  | .911  | .441  | .941  | .911  | .584  |
+|--------------|-------|-------|-------|-------|-------|-------|
+| ComplEx-V    | .883  | .921  | .352  | .932  | .914  | .619  |
+| ComplEx-S    | .881  | .918  | .738  | .922  | .914  | .964  |
+|--------------|-------|-------|-------|-------|-------|-------|
+| SimplE-V     | .882  | .915  | .378  | .932  | .914  | .656  |
+| SimplE-S     | .883  | .918  | .841  | .930  | .905  | .991  |
+|--------------|-------|-------|-------|-------|-------|-------|
+| ConvE-V      | .893  | .928  | .858  | .941  | .917  | .904  |
+| ConvE-S      | .892  | .925  | .931  | .939  | .923  | .956  |
+|--------------|-------|-------|-------|-------|-------|-------|
+| TuckER-V     | .884  | .928  | .791  | .941  | .917  | .915  |
+| TuckER-S     | .894  | .935  | .930  | .942  | .917  | .983  |
+
+
+
 
 
 ## References
